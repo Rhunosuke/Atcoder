@@ -4,15 +4,9 @@ N, Q = map(int, input().split())
 S = input()
 L = [list(map(int, input().split())) for i in range(Q)]
 
-array = []
-
-for m in re.finditer(r'AC', S):
-    array.append(m.start())
-
+array = [0 for i in range(N + 1)]
+for i in range(N) :
+    array[i + 1] = array[i] + (1 if S[i: i + 2] == 'AC' else 0)
 
 for i in range(Q) :
-    count = 0
-    for j in range(len(array)) :
-        if L[i][0] - 1 <= array[j] and L[i][1] - 2 >= array[j] :
-            count += 1
-    print(count)
+    print(array[L[i][1] - 1] - array[L[i][0] - 1])
