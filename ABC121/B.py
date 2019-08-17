@@ -1,14 +1,13 @@
-N, M, C = map(int, input().split())
-B = list(map(int, input().split()))
-A = [list(map(int, input().split())) for i in range(N)]
-
+n, m, c = map(int, input().split())
+b = [int(inp) for inp in input().split()]
 cnt = 0
 
-for i in range(N) :
+for i in range(n) :
     sum = 0
-    for j in range(M) :
-        sum += A[i][j] * B[j]
-    if sum + C > 0 :
+    a = [int(inp) for inp in input().split()]
+    for j in range(m) :
+        sum += a[j] * b[j]
+    if sum + c > 0 :
         cnt += 1
 
 print(cnt)
