@@ -1,15 +1,5 @@
-N = int(input())
-
-nList = [i + 1 for i in range(N)]
-res = -1
-counter = -1
-for n in nList :
-    count = 0
-    buf = n
-    while buf % 2 == 0 :
-        count += 1
-        buf = buf / 2
-    if counter < count :
-        counter  = count
-        res = n
-print(res)
+n = int(input())
+for i in range(7) :
+    if (2**i) <= n :
+        ans = 2**i
+print(ans)
