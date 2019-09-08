@@ -1,1 +1,2 @@
-print(10 ** int(input()) + 7)
+a, b = map(int, input().split())
+print(-(-b//a))
