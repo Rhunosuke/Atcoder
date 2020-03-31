@@ -1,3 +1,4 @@
+import heapq
 import queue
 
 '''
@@ -5,10 +6,10 @@ TLE code
 
 '''
 
-def put_property(q, cost, v, d) :
+def push_property(h, cost, v, d) :
     if cost[v] != float('INF') :
         return
-    q.put(v)
+    heapq.heappush(h, [d, v])
     cost[v] = d
 
 
@@ -19,22 +20,25 @@ y -= 1
 ans = [0] * n
 
 for i in range(n) :
-    q = queue.Queue()
+    h = []
+    heapq.heapify(h)
+    heapq.heappush(h, [0, i])
     cost = [float('INF') for _ in range(n)]
-    put_property(q, cost,  i, 0)
-    while not q.empty() :
-        v = q.get()
+    push_property(h, cost,  i, 0)
+    while len(h) != 0 :
+        v = heapq.heappop(h)[1]
         d = cost[v]
+
         #print(i, v, d, cost, 'IN')
         #print(v, d)
         if v+1 < n :
-            put_property(q, cost, v+1, d+1)
+            push_property(h, cost, v+1, d+1)
         if v-1 >= 0 :
-            put_property(q, cost, v-1, d+1)
+            push_property(h, cost, v-1, d+1)
         if v == x :
-            put_property(q, cost, y, d+1)
+            push_property(h, cost, y, d+1)
         if v == y:
-            put_property(q, cost, x, d+1)
+            push_property(h, cost, x, d+1)
         #print(i, v, d, cost)
     for j in range(n) :
         ans[cost[j]] += 1
